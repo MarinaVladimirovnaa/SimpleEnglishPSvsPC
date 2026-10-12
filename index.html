@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Simple English · A2 — Present Simple vs Present Continuous</title>
+<style>
+:root{
+  --navy:#101d42; --navy2:#0c1736; --yellow:#ffd62e; --cream:#f7f2e2;
+  --pink:#ffaddb; --purple:#cda6ff; --green:#2fbf71; --red:#e5484d;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%}
+body{
+  font-family:'Segoe UI',Inter,system-ui,Arial,sans-serif;
+  background:var(--cream); color:var(--navy);
+  overflow-x:hidden;
+}
+button{font-family:inherit;cursor:pointer}
+/* ---------- top bar ---------- */
+.topbar{
+  position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:space-between;
+  gap:16px;padding:14px 28px;background:var(--cream);border-bottom:3px solid var(--navy);
+  flex-wrap:wrap;
+}
+.brand{display:flex;align-items:center;gap:10px;font-weight:900;font-size:20px;letter-spacing:-.5px}
+.logo-dot{width:22px;height:22px;border-radius:50%;background:var(--navy);position:relative;flex:none}
+.logo-dot::after{content:"";position:absolute;inset:5px;border-radius:50%;background:var(--yellow)}
+.level-pill{background:var(--pink);border:3px solid var(--navy);border-radius:999px;
+  padding:2px 12px;font-size:14px;font-weight:900;box-shadow:3px 3px 0 var(--navy)}
+.steps{display:flex;gap:14px;flex-wrap:wrap}
+.step{display:flex;align-items:center;gap:7px;font-weight:800;font-size:14px;background:none;border:none;color:var(--navy);padding:4px 2px}
+.step .circ{width:26px;height:26px;border-radius:50%;border:3px solid var(--navy);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:900;background:var(--cream);transition:.2s}
+.step.done .circ{background:var(--green);color:#fff;border-color:var(--navy)}
+.step.active .circ{background:var(--yellow)}
+.step:hover .circ{transform:translateY(-2px)}
+/* ---------- buttons ---------- */
+.btn{
+  border:3px solid var(--navy);border-radius:999px;padding:14px 28px;font-weight:900;font-size:17px;
+  box-shadow:5px 5px 0 var(--navy);transition:.12s;background:#fff;color:var(--navy);
+}
+.btn:hover{transform:translate(-2px,-2px);box-shadow:7px 7px 0 var(--navy)}
+.btn:active{transform:translate(3px,3px);box-shadow:1px 1px 0 var(--navy)}
+.btn-dark{background:var(--navy);color:#fff}
+.btn-light{background:#fff}
+.btn-ghost{background:var(--cream);font-size:14px;padding:9px 18px;box-shadow:3px 3px 0 var(--navy)}
+.btn-green{background:var(--green);color:#fff}
+.btn:disabled{opacity:.45;pointer-events:none}
+/* ---------- hero ---------- */
+.screen{min-height:calc(100vh - 76px);display:flex;flex-direction:column}
+.hero{background:var(--yellow);position:relative;flex:1;justify-content:center;overflow:hidden}
+.hero::before{content:"";position:absolute;left:0;right:0;bottom:64px;height:22px;
+  background:radial-gradient(circle at 10px -8px, transparent 14px, var(--navy) 15px, var(--navy) 17px, transparent 18px);
+  background-size:64px 22px;opacity:.9}
+.hero-inner{max-width:860px;margin:auto;text-align:center;padding:56px 24px 120px;position:relative;z-index:2}
+.badge{display:inline-block;background:#fff;border:3px solid var(--navy);border-radius:999px;
+  padding:9px 22px;font-weight:900;font-size:14px;letter-spacing:1.5px;box-shadow:4px 4px 0 var(--navy);margin-bottom:28px}
+.hero h1{font-size:clamp(34px,5.6vw,64px);line-height:1.08;font-weight:900;letter-spacing:-2px;margin-bottom:22px}
+.hero-sub{font-size:clamp(16px,2vw,20px);line-height:1.55;font-weight:600;max-width:640px;margin:0 auto 34px}
+.hero-btns{display:flex;gap:18px;justify-content:center;flex-wrap:wrap}
+.stars-chip{margin-top:30px;display:inline-block;background:var(--navy);color:var(--yellow);
+  border-radius:999px;padding:8px 22px;font-weight:900;font-size:16px;box-shadow:4px 4px 0 rgba(16,29,66,.35)}
+.marquee{background:var(--pink);border-top:3px solid var(--navy);overflow:hidden;white-space:nowrap;
+  position:absolute;left:0;right:0;bottom:0;padding:10px 0}
+.marquee-track{display:inline-block;animation:mq 26s linear infinite;font-weight:900;font-size:17px;color:var(--navy)}
+@keyframes mq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+/* ---------- pages ---------- */
+.page{padding:44px clamp(16px,5vw,72px) 80px;max-width:1280px;margin:0 auto;width:100%}
+.page-head{display:flex;align-items:center;gap:18px;margin-bottom:14px;flex-wrap:wrap}
+.num-chip{background:var(--navy);color:#fff;font-weight:900;border-radius:14px;padding:6px 14px;font-size:18px;box-shadow:3px 3px 0 rgba(16,29,66,.3)}
+.page-head h2{font-size:clamp(30px,4vw,46px);font-weight:900;letter-spacing:-1.5px}
+.page-sub{font-size:18px;font-weight:600;margin-bottom:34px;max-width:760px;line-height:1.5}
+/* topic cards */
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:28px}
+.card{border:3px solid var(--navy);border-radius:26px;box-shadow:8px 8px 0 var(--navy);padding:28px;position:relative}
+.card.pink{background:var(--pink)} .card.yellow{background:var(--yellow)} .card.purple{background:var(--purple)} .card.creamc{background:#fdf8ea}
+.card .tag{display:inline-block;background:#fff;border:3px solid var(--navy);border-radius:999px;padding:5px 16px;font-weight:900;font-size:12.5px;letter-spacing:1px;margin-bottom:18px}
+.card h3{font-size:27px;font-weight:900;letter-spacing:-.8px;margin-bottom:10px}
+.card p.desc{font-weight:600;line-height:1.5;font-size:15.5px;margin-bottom:16px}
+.status{display:flex;align-items:center;gap:8px;font-weight:800;font-size:14.5px;margin-bottom:18px}
+.status .dot{width:14px;height:14px;border-radius:50%;border:3px solid var(--navy);background:#fff}
+.status.done .dot{background:var(--green)}
+.card .btn{width:100%;text-align:center}
+.card.locked{opacity:.75}
+/* lesson */
+.lesson-grid{display:grid;grid-template-columns:minmax(300px,420px) 1fr;gap:30px;align-items:start}
+@media(max-width:900px){.lesson-grid{grid-template-columns:1fr}}
+.rules-card h3{margin-bottom:18px}
+.rule{display:flex;gap:12px;margin-bottom:16px}
+.rule .bullet{flex:none;width:30px;height:30px;border-radius:50%;background:var(--navy);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:14px;margin-top:2px}
+.rule b{display:block;font-size:16px;margin-bottom:3px}
+.rule span{font-size:14.5px;font-weight:600;line-height:1.45}
+.ex-card{background:#fff}
+.ex-top{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:8px;font-weight:800;font-size:14px}
+.pbar{height:14px;border:3px solid var(--navy);border-radius:999px;overflow:hidden;background:var(--cream);margin-bottom:24px}
+.pbar>div{height:100%;background:var(--yellow);transition:width .35s}
+.ex-q{font-size:clamp(21px,2.6vw,28px);font-weight:800;line-height:1.4;margin-bottom:24px}
+.gap{color:var(--red);font-weight:900}
+.opts{display:flex;flex-direction:column;gap:14px}
+.opt{border:3px solid var(--navy);border-radius:18px;background:var(--cream);padding:14px 20px;font-weight:800;font-size:18px;text-align:left;box-shadow:4px 4px 0 var(--navy);transition:.12s}
+.opt:hover:not(:disabled){transform:translate(-2px,-2px);box-shadow:6px 6px 0 var(--navy);background:#fff}
+.opt:disabled{cursor:default}
+.opt.correct{background:var(--green);color:#fff}
+.opt.wrong{background:var(--red);color:#fff;animation:shake .3s}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+.fill-row{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+.fill-row input{border:3px solid var(--navy);border-radius:14px;padding:12px 16px;font-size:18px;font-weight:800;background:var(--cream);color:var(--navy);width:min(240px,100%);outline:none;font-family:inherit}
+.fill-row input:focus{background:#fff;box-shadow:4px 4px 0 var(--navy)}
+.fill-row input.good{border-color:var(--green);background:#e8f9f0}
+.fill-row input.bad{border-color:var(--red);background:#fdecec;animation:shake .3s}
+.feedback{min-height:30px;margin:18px 0 6px;font-weight:900;font-size:17px}
+.feedback.ok{color:var(--green)} .feedback.no{color:var(--red)}
+.ex-nav{display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap}
+.score-chip{font-weight:900;font-size:16px;background:var(--yellow);border:3px solid var(--navy);border-radius:999px;padding:7px 18px;box-shadow:3px 3px 0 var(--navy)}
+.topic-done{text-align:center;padding:20px 10px}
+.topic-done .big{font-size:60px;font-weight:900;letter-spacing:-2px;margin-bottom:10px}
+.topic-done p{font-weight:700;font-size:18px;margin-bottom:24px}
+/* compare table */
+.cmp{width:100%;border-collapse:collapse;font-size:14px;font-weight:700}
+.cmp th,.cmp td{border:3px solid var(--navy);padding:9px 10px;text-align:left;vertical-align:top}
+.cmp th{background:var(--navy);color:#fff;font-size:13px;letter-spacing:.5px}
+.cmp td{background:#fff}
+/* result */
+.result-wrap{max-width:720px;margin:0 auto;text-align:center}
+.result-card{background:#fff}
+.result-card .big{font-size:clamp(48px,8vw,84px);font-weight:900;letter-spacing:-3px;color:var(--navy)}
+.result-card .big span{color:var(--red)}
+.result-msg{font-size:19px;font-weight:800;margin:14px 0 26px;line-height:1.5}
+.circles-row{display:flex;justify-content:center;gap:16px;margin-bottom:30px;flex-wrap:wrap}
+.circles-row .c{width:56px;height:56px;border-radius:50%;border:3px solid var(--navy);background:var(--cream);display:flex;align-items:center;justify-content:center;font-weight:900;font-size:22px;box-shadow:4px 4px 0 var(--navy)}
+.circles-row .c.done{background:var(--green);color:#fff}
+.result-btns{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+/* toast + footer */
+.toast{position:fixed;left:50%;bottom:28px;transform:translateX(-50%) translateY(90px);background:var(--navy);color:#fff;font-weight:800;padding:13px 24px;border-radius:999px;border:3px solid var(--navy);box-shadow:5px 5px 0 rgba(0,0,0,.25);transition:.3s;z-index:99;font-size:15px}
+.toast.show{transform:translateX(-50%) translateY(0)}
+.reset-link{background:none;border:none;font-weight:800;font-size:13px;color:var(--navy);opacity:.65;text-decoration:underline;margin-top:34px}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="brand"><span class="logo-dot"></span><span>Simple English</span><span class="level-pill">A2</span></div>
+  <nav class="steps" id="stepsNav"></nav>
+</header>
+<main id="app"></main>
+<div class="toast" id="toast"></div>
+
+<script>
+const TOPICS=[
+ {name:"Present Simple", color:"pink", tag:"ТЕМА 1 · 10 ЗАДАНИЙ",
+  short:"Привычки, распорядок и факты: I play, she plays, do you? Каждый день, всегда, обычно.",
+  rules:[
+   {t:"Когда используем", b:"Привычки, распорядок дня, факты и расписания: I play tennis on Mondays. The shop opens at 9."},
+   {t:"Форма", b:"I / you / we / they + глагол: I work. He / she / it + глагол + s: she works, he watches, it rains."},
+   {t:"Вопрос и отрицание", b:"Do you play? Does she work? He doesn’t like tea. После does глагол без s: Does she work?"},
+   {t:"Маркеры", b:"always, usually, often, sometimes, never, every day / week, on Mondays."}],
+  ex:[
+   {q:"She ___ to school every day.", type:"choice", opts:["go","goes","going"], a:"goes"},
+   {q:"My father ___ in a bank.", type:"choice", opts:["work","works","working"], a:"works"},
+   {q:"___ you like coffee?", type:"choice", opts:["Do","Does","Are"], a:"Do"},
+   {q:"He ___ not watch TV in the morning.", type:"choice", opts:["do","does","is"], a:"does"},
+   {q:"Water ___ at 100°C.", type:"choice", opts:["boil","boils","is boiling"], a:"boils"},
+   {q:"The train ___ at 8 o’clock.", type:"choice", opts:["leave","leaves","is leaving"], a:"leaves"},
+   {q:"I ___ (get up) at 7 o’clock.", type:"fill", accept:["get up"]},
+   {q:"My brother ___ (watch) TV every evening.", type:"fill", accept:["watches"]},
+   {q:"We ___ in Moscow.", type:"choice", opts:["live","lives","living"], a:"live"},
+   {q:"She always ___ her homework.", type:"choice", opts:["do","does","is doing"], a:"does"}
+  ]},
+ {name:"Present Continuous", color:"yellow", tag:"ТЕМА 2 · 10 ЗАДАНИЙ",
+  short:"Действие прямо сейчас: I am playing, she is sleeping. Маркеры — now, Look!, at the moment.",
+  rules:[
+   {t:"Когда используем", b:"Действие происходит прямо сейчас, временные ситуации и ближайшие планы: She is sleeping now. We are moving house this week."},
+   {t:"Форма", b:"am / is / are + глагол + ing: I am reading, she is cooking, they are playing."},
+   {t:"Написание ing", b:"run → running (двойная согласная), write → writing (убираем e), swim → swimming, play → playing."},
+   {t:"Маркеры", b:"now, right now, at the moment, today, tonight, Look!, Listen!"},
+   {t:"Вопрос", b:"What are you doing? Is she sleeping? Глагол to be выносим вперёд."}],
+  ex:[
+   {q:"Look! It ___.", type:"choice", opts:["rains","is raining","rain"], a:"is raining"},
+   {q:"She ___ a book now.", type:"choice", opts:["reads","is reading","read"], a:"is reading"},
+   {q:"They ___ football at the moment.", type:"choice", opts:["play","are playing","plays"], a:"are playing"},
+   {q:"Listen! The baby ___.", type:"choice", opts:["cries","is crying","cry"], a:"is crying"},
+   {q:"I ___ (write) a letter at the moment.", type:"fill", accept:["am writing","im writing","m writing"]},
+   {q:"They ___ (swim) in the pool now.", type:"fill", accept:["are swimming","re swimming"]},
+   {q:"We ___ for the test right now.", type:"choice", opts:["study","are studying","studies"], a:"are studying"},
+   {q:"The sun ___ today.", type:"choice", opts:["shines","is shining","shine"], a:"is shining"},
+   {q:"Why ___ you crying?", type:"choice", opts:["are","is","do"], a:"are"},
+   {q:"He ___ his bike today.", type:"choice", opts:["repairs","is repairing","repair"], a:"is repairing"}
+  ]},
+ {name:"Разница времён", color:"purple", tag:"ТЕМА 3 · 10 ЗАДАНИЙ",
+  short:"Simple = обычно и всегда. Continuous = сейчас и временно. Учимся выбирать время по маркерам.",
+  rules:[
+   {t:"Главное правило", b:"Present Simple — факт и привычка: She works in a shop. Present Continuous — происходит сейчас или временно: She is working today."},
+   {t:"Маркеры решают", b:"always, every day, usually → Present Simple. now, Look!, at the moment → Present Continuous."},
+   {t:"Статичные глаголы", b:"know, like, want, need, understand обычно НЕ ставим в Continuous: I know him, а не I am knowing."},
+   {t:"Осторожно", b:"«Look!» и «Listen!» почти всегда = Continuous. Расписание (the train leaves at 6) = Simple, даже про будущее."}],
+  ex:[
+   {q:"She usually ___ tea, but today she ___ coffee.", type:"dual", accept:[["drinks"],["is drinking","s drinking"]]},
+   {q:"Look! The children ___ in the garden.", type:"choice", opts:["play","are playing","plays"], a:"are playing"},
+   {q:"He ___ to work by bus every day.", type:"choice", opts:["go","goes","is going"], a:"goes"},
+   {q:"Be quiet! I ___ on the phone.", type:"choice", opts:["talk","am talking","talks"], a:"am talking"},
+   {q:"The Earth ___ around the Sun.", type:"choice", opts:["goes","is going","go"], a:"goes"},
+   {q:"We ___ a party tonight.", type:"choice", opts:["have","are having","has"], a:"are having"},
+   {q:"He usually ___ TV in the evening, but now he ___ a book.", type:"dual", accept:[["watches"],["is reading","s reading"]]},
+   {q:"She ___ English very well.", type:"choice", opts:["speaks","is speaking","speak"], a:"speaks"},
+   {q:"He ___ his car this week — it is broken.", type:"choice", opts:["repairs","is repairing","repair"], a:"is repairing"},
+   {q:"My friend ___ in London. He has a house there.", type:"choice", opts:["lives","is living","live"], a:"lives"}
+  ]}
+];
+
+const TEST=[
+ {q:"She ___ her grandmother every Sunday.", type:"choice", opts:["visits","is visiting","visit"], a:"visits"},
+ {q:"Hurry up! The bus ___!", type:"choice", opts:["comes","is coming","come"], a:"is coming"},
+ {q:"Water ___ at 0°C.", type:"choice", opts:["freezes","is freezing","freeze"], a:"freezes"},
+ {q:"I ___ (repair) my bike at the moment.", type:"fill", accept:["am repairing","im repairing","m repairing"]},
+ {q:"He usually ___ TV in the evening, but now he ___ a book.", type:"dual", accept:[["watches"],["is reading","s reading"]]},
+ {q:"They ___ London next week.", type:"choice", opts:["visit","are visiting","visits"], a:"are visiting"},
+ {q:"My mum ___ delicious cakes.", type:"choice", opts:["cooks","is cooking","cook"], a:"cooks"},
+ {q:"___! The baby ___!", type:"dual", accept:[["look"],["is sleeping","s sleeping"]]},
+ {q:"She ___ at 7 o’clock every morning.", type:"choice", opts:["gets up","is getting up","get up"], a:"gets up"},
+ {q:"We ___ a new house this year.", type:"choice", opts:["build","are building","builds"], a:"are building"},
+ {q:"The train ___ at 6 p.m. every day.", type:"choice", opts:["leaves","is leaving","leave"], a:"leaves"},
+ {q:"Why ___ you ___ (cry)?", type:"dual", accept:[["are"],["crying"]]}
+];
+
+const MQ=["she plays","is she playing?","I am reading","they don’t","Look!","he watches","we are having fun","it rains","now","always","does he work?","they are swimming","every day","at the moment","she is cooking","we live"];
+
+let S={screen:"start",ti:0,ei:0,tried:false,done:{},stars:0,testIdx:0,testTried:false,testStars:0,testDone:false,wrong:{}};
+const TOTAL=10*3+TEST.length;
+
+function save(){try{localStorage.setItem("pscA2",JSON.stringify({done:S.done,stars:S.stars,testStars:S.testStars,testDone:S.testDone,wrong:S.wrong}))}catch(e){}}
+function load(){try{const d=JSON.parse(localStorage.getItem("pscA2"));if(d){S.done=d.done||{};S.stars=d.stars||0;S.testStars=d.testStars||0;S.testDone=d.testDone||false;S.wrong=d.wrong||{}}}catch(e){}}
+function totalStars(){return S.stars+S.testStars}
+function esc(s){return s.replace(/&/g,"&amp;").replace(/</g,"&lt;")}
+
+function renderSteps(){
+ const labels=["Present Simple","Present Continuous","Разница","Тест"];
+ let h="";
+ labels.forEach((l,i)=>{
+  const key=i===3?"test":i;
+  const done=i===3?S.testDone:!!S.done[i];
+  const active=(S.screen==="lesson"&&S.ti===i)||(S.screen==="test"&&i===3);
+  h+=`<button class="step ${done?"done":""} ${active?"active":""}" onclick="stepGo(${i})">
+    <span class="circ">${done?"✓":(i===3?"★":i+1)}</span>${l}</button>`;
+ });
+ document.getElementById("stepsNav").innerHTML=h;
+}
+function stepGo(i){ if(i===3) goTest(); else goLesson(i); }
+
+function toast(msg){const t=document.getElementById("toast");t.textContent=msg;t.classList.add("show");clearTimeout(t._x);t._x=setTimeout(()=>t.classList.remove("show"),2200)}
+
+/* ---------- screens ---------- */
+function goStart(){
+ S.screen="start";
+ document.getElementById("app").innerHTML=`
+ <section class="screen hero">
+  <div class="hero-inner">
+   <div class="badge">ТРЕНАЖЁР ГРАММАТИКИ · УРОВЕНЬ А2</div>
+   <h1>Present Simple и Present Continuous — без зубрёжки</h1>
+   <p class="hero-sub">Короткие правила-шпаргалки и живые упражнения с мгновенной проверкой. Выбирай тему, отвечай, получай звёзды — и доведи все четыре кружка вверху до зелёного.</p>
+   <div class="hero-btns">
+    <button class="btn btn-dark" onclick="goLesson(0)">Начать с Present Simple →</button>
+    <button class="btn btn-light" onclick="goTest()">Сразу к тесту</button>
+   </div>
+   <div class="stars-chip">★ ${totalStars()} / ${TOTAL} звёзд</div>
+  </div>
+  <div class="marquee"><div class="marquee-track">${(MQ.concat(MQ)).map(m=>`${esc(m)}&nbsp;&nbsp;★&nbsp;&nbsp;`).join("")}</div></div>
+ </section>`;
+ renderSteps();
+}
+
+function goTopics(){
+ S.screen="topics";
+ const cards=TOPICS.map((t,i)=>{
+  const d=!!S.done[i];
+  return `<div class="card ${t.color}">
+   <div class="tag">${t.tag}</div>
+   <h3>${t.name}</h3>
+   <p class="desc">${t.short}</p>
+   <div class="status ${d?"done":""}"><span class="dot"></span>${d?"Пройдено ✓":"Ещё не пройдено"}</div>
+   <button class="btn btn-dark" onclick="goLesson(${i})">${d?"Повторить →":"Начать →"}</button>
+  </div>`;
+ }).join("");
+ const allDone=TOPICS.every((_,i)=>S.done[i]);
+ document.getElementById("app").innerHTML=`
+ <section class="screen"><div class="page">
+  <div class="page-head"><span class="num-chip">01</span><h2>Выбери тему</h2></div>
+  <p class="page-sub">Каждая тема — это шпаргалка и 10 заданий: выбор ответа и вставка пропущенного слова. В конце — финальный тест из 12 вопросов по всем темам.</p>
+  <div class="cards">${cards}</div>
+  <div style="margin-top:30px">
+   <div class="card creamc">
+    <div class="tag">ФИНАЛ · 12 ЗАДАНИЙ</div>
+    <h3>Финальный тест</h3>
+    <p class="desc">Все три темы вперемешку. Собери как можно больше звёзд с первой попытки!</p>
+    <div class="status ${S.testDone?"done":""}"><span class="dot"></span>${S.testDone?`Пройдено · ★ ${S.testStars}/${TEST.length}`:"Ещё не пройдено"}</div>
+    <button class="btn btn-dark" style="max-width:340px" onclick="goTest()">${S.testDone?"Пройти ещё раз →":"Начать тест →"}</button>
+   </div>
+  </div>
+  <button class="reset-link" onclick="resetAll()">Сбросить весь прогресс</button>
+ </div></section>`;
+ renderSteps();
+}
+
+function goLesson(i){
+ S.screen="lesson"; S.ti=i; S.ei=0; S.tried=false;
+ renderLesson(); window.scrollTo({top:0});
+}
+function renderLesson(){
+ const t=TOPICS[S.ti];
+ const rules=t.rules.map((r,i)=>`<div class="rule"><div class="bullet">${i+1}</div><div><b>${r.t}</b><span>${r.b}</span></div></div>`).join("");
+ document.getElementById("app").innerHTML=`
+ <section class="screen"><div class="page">
+  <div class="page-head"><span class="num-chip">0${S.ti+1}</span><h2>${t.name}</h2>
+   <button class="btn btn-ghost" onclick="goTopics()">← К темам</button></div>
+  <div class="lesson-grid">
+   <aside class="card rules-card ${t.color}"><div class="tag">ШАПАРГАЛКА</div><h3>Короткие правила</h3>${rules}
+    <div class="score-chip" style="margin-top:6px">★ ${totalStars()} / ${TOTAL}</div></aside>
+   <div class="card ex-card" id="exCard"></div>
+  </div>
+ </div></section>`;
+ renderSteps(); renderEx();
+}
+
+function exInner(ex,n,total,ctx){
+ const pct=Math.round(n/total*100);
+ let body="";
+ if(ex.type==="choice"){
+  body=`<div class="opts">${ex.opts.map(o=>`<button class="opt" id="opt-${esc(o)}" onclick="choose('${esc(o).replace(/'/g,"\\'")}')">${esc(o)}</button>`).join("")}</div>`;
+ } else if(ex.type==="fill"){
+  body=`<div class="fill-row"><input id="in0" placeholder="впиши слово…" onkeydown="if(event.key==='Enter')checkFill()">
+   <button class="btn btn-dark" style="padding:11px 22px;font-size:15px" onclick="checkFill()">Проверить</button></div>`;
+ } else {
+  body=`<div class="fill-row">
+   <input id="in0" style="width:150px" onkeydown="if(event.key==='Enter')checkFill()">
+   <input id="in1" style="width:190px" onkeydown="if(event.key==='Enter')checkFill()">
+   <button class="btn btn-dark" style="padding:11px 22px;font-size:15px" onclick="checkFill()">Проверить</button></div>`;
+ }
+ return `
+ <div class="ex-top"><span>Задание ${n} из ${total}</span><span>${ctx}</span></div>
+ <div class="pbar"><div style="width:${pct}%"></div></div>
+ <div class="ex-q">${fmtQ(ex)}</div>
+ ${body}
+ <div class="feedback" id="fb"></div>
+ <div class="ex-nav"><span class="score-chip">★ звёзд: ${totalStars()}</span>
+ <button class="btn btn-dark" id="nextBtn" style="visibility:hidden" onclick="nextEx()">Далее →</button></div>`;
+}
+function fmtQ(ex){ return esc(ex.q).replace(/___/g,'<span class="gap">_____</span>') }
+
+function renderEx(){
+ const t=TOPICS[S.ti];
+ document.getElementById("exCard").innerHTML=exInner(t.ex[S.ei],S.ei+1,t.ex.length,`Тема ${S.ti+1} · ${t.name}`);
+}
+
+function keyT(){return `t${S.ti}-${S.ei}`}
+function keyX(){return `x${S.testIdx}`}
+
+function markTry(k){ if(!S.wrong[k]) S.wrong[k]=0; S.wrong[k]++; }
+function isFirstTry(k){ return !S.wrong[k] }
+
+function choose(o){
+ const ex=TOPICS[S.ti].ex[S.ei];
+ const btns=[...document.querySelectorAll(".opt")];
+ btns.forEach(b=>b.disabled=true);
+ if(o===ex.a){
+  document.getElementById("opt-"+o).classList.add("correct");
+  btns.filter(b=>b.id!=="opt-"+o).forEach(b=>b.style.opacity=.4);
+  if(isFirstTry(keyT())) S.stars++;
+  markTry(keyT());
+  fb(true); unlockNext(); save();
+ } else {
+  document.getElementById("opt-"+o).classList.add("wrong");
+  btns.find(b=>b.id==="opt-"+o).disabled=false;
+  markTry(keyT()); fb(false,false);
+ }
+}
+function norm(s){return s.trim().toLowerCase().replace(/[’']/g,"").replace(/\s+/g," ")}
+function checkFill(){
+ const ex=TOPICS[S.ti].ex[S.ei];
+ const n=ex.type==="dual"?2:1; let ok=true;
+ for(let i=0;i<n;i++){
+  const inp=document.getElementById("in"+i);
+  const val=norm(inp.value);
+  const good=ex.accept[i].some(a=>norm(a)===val);
+  inp.classList.remove("good","bad"); inp.classList.add(good?"good":"bad");
+  inp.disabled=good; if(!good) ok=false;
+ }
+ if(ok){
+  const first=isFirstTry(keyT()); if(first) S.stars++;
+  markTry(keyT()); fb(true,first); unlockNext(); save();
+  document.querySelector(".fill-row .btn").disabled=true;
+ } else { markTry(keyT()); fb(false,false); }
+}
+function fb(ok,first){
+ const f=document.getElementById("fb");
+ f.className="feedback "+(ok?"ok":"no");
+ f.textContent=ok?(first?"Верно! +1 ★":"Верно!"):"Пока нет — попробуй ещё раз.";
+}
+function unlockNext(){document.getElementById("nextBtn").style.visibility="visible"}
+
+function nextEx(){
+ S.ei++; S.tried=false;
+ if(S.ei>=TOPICS[S.ti].ex.length){
+  S.done[S.ti]=true; save();
+  const last=S.ti===TOPICS.length-1;
+  document.getElementById("exCard").innerHTML=`
+   <div class="topic-done"><div class="big">Тема пройдена!</div>
+   <p>Ты ответил на все 10 заданий.<br>Следующая тема ждёт — доведи кружки до зелёного!</p>
+   <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap">
+    <button class="btn btn-light" onclick="goTopics()">К темам</button>
+    ${last?`<button class="btn btn-dark" onclick="goTest()">К финальному тесту →</button>`
+          :`<button class="btn btn-dark" onclick="goLesson(${S.ti+1})">Следующая тема →</button>`}
+   </div></div>`;
+  renderSteps(); save();
+ } else renderEx();
+}
+
+/* ---------- test ---------- */
+function goTest(){ S.screen="test"; S.testIdx=0; renderTest(); window.scrollTo({top:0}); }
+function renderTest(){
+ if(S.testIdx>=TEST.length){ result(); return; }
+ document.getElementById("app").innerHTML=`
+ <section class="screen"><div class="page" style="max-width:820px">
+  <div class="page-head"><span class="num-chip">★</span><h2>Финальный тест</h2>
+   <button class="btn btn-ghost" onclick="goTopics()">← К темам</button></div>
+  <div class="card ex-card" id="exCard"></div>
+ </div></section>`;
+ document.getElementById("exCard").innerHTML=exInner(TEST[S.testIdx],S.testIdx+1,TEST.length,"Финал · 12 заданий");
+ renderSteps();
+}
+function tchoose(o){
+ const ex=TEST[S.testIdx];
+ const btns=[...document.querySelectorAll(".opt")];
+ btns.forEach(b=>b.disabled=true);
+ if(o===ex.a){
+  document.getElementById("opt-"+o).classList.add("correct");
+  btns.filter(b=>b.id!=="opt-"+o).forEach(b=>b.style.opacity=.4);
+  const first=isFirstTry(keyX()); if(first) S.testStars++;
+  markTry(keyX()); fb(true,first); unlockNext(); save();
+ } else {
+  document.getElementById("opt-"+o).classList.add("wrong");
+  btns.find(b=>b.id==="opt-"+o).disabled=false;
+  markTry(keyX()); fb(false,false);
+ }
+}
+function tcheckFill(){
+ const ex=TEST[S.testIdx];
+ const n=ex.type==="dual"?2:1; let ok=true;
+ for(let i=0;i<n;i++){
+  const inp=document.getElementById("in"+i);
+  const good=ex.accept[i].some(a=>norm(a)===norm(inp.value));
+  inp.classList.remove("good","bad"); inp.classList.add(good?"good":"bad");
+  inp.disabled=good; if(!good) ok=false;
+ }
+ if(ok){
+  const first=isFirstTry(keyX()); if(first) S.testStars++;
+  markTry(keyX()); fb(true,first); unlockNext(); save();
+  document.querySelector(".fill-row .btn").disabled=true;
+ } else { markTry(keyX()); fb(false,false); }
+}
+function tnext(){ S.testIdx++; renderTest(); }
+
+function result(){
+ S.testDone=true; save();
+ const st=totalStars();
+ const pct=Math.round(st/TOTAL*100);
+ const msg=pct>=90?"Блестяще! Оба времени ты различаешь как носитель. Все кружки зелёные!"
+  :pct>=65?"Очень хорошо! Ещё немного практики — и разница между временами будет очевидна."
+  :pct>=40?"Неплохо! Загляни в шпаргалки тем ещё раз и попробуй собрать больше звёзд."
+  :"Стоит повторить шпаргалки и пройти темы заново. Получится — гарантирую!";
+ document.getElementById("app").innerHTML=`
+ <section class="screen"><div class="page result-wrap">
+  <div class="page-head" style="justify-content:center"><span class="num-chip">★</span><h2>Твой результат</h2></div>
+  <div class="card result-card" style="padding:44px 30px">
+   <div class="big">★ ${st}<span>/${TOTAL}</span></div>
+   <p class="result-msg">${msg}</p>
+   <div class="circles-row">
+    ${[0,1,2].map(i=>`<div class="c ${S.done[i]?"done":""}">${S.done[i]?"✓":i+1}</div>`).join("")}
+    <div class="c done">★</div>
+   </div>
+   <div class="result-btns">
+    <button class="btn btn-light" onclick="goTopics()">К темам</button>
+    <button class="btn btn-dark" onclick="retest()">Пройти тест ещё раз</button>
+   </div>
+  </div>
+ </div></section>`;
+ renderSteps();
+}
+function retest(){ S.testIdx=0; S.testStars=0; S.testDone=false; S.wrong={}; save(); goTest(); }
+function resetAll(){ S={screen:"topics",ti:0,ei:0,tried:false,done:{},stars:0,testIdx:0,testTried:false,testStars:0,testDone:false,wrong:{}}; save(); goTopics(); toast("Прогресс сброшен"); }
+
+// wire exercise handlers to current context
+function choose(o){ S.screen==="test"?tchoose(o):chooseT(o) }
+function checkFill(){ S.screen==="test"?tcheckFill():checkFillT() }
+function nextEx(){ S.screen==="test"?tnext():nextExT() }
+function chooseT(o){
+ const ex=TOPICS[S.ti].ex[S.ei];
+ const btns=[...document.querySelectorAll(".opt")];
+ btns.forEach(b=>b.disabled=true);
+ if(o===ex.a){
+  document.getElementById("opt-"+o).classList.add("correct");
+  btns.filter(b=>b.id!=="opt-"+o).forEach(b=>b.style.opacity=.4);
+  const first=isFirstTry(keyT()); if(first) S.stars++;
+  markTry(keyT()); fb(true,first); unlockNext(); save();
+ } else {
+  document.getElementById("opt-"+o).classList.add("wrong");
+  btns.find(b=>b.id==="opt-"+o).disabled=false;
+  markTry(keyT()); fb(false,false);
+ }
+}
+function checkFillT(){
+ const ex=TOPICS[S.ti].ex[S.ei];
+ const n=ex.type==="dual"?2:1; let ok=true;
+ for(let i=0;i<n;i++){
+  const inp=document.getElementById("in"+i);
+  const good=ex.accept[i].some(a=>norm(a)===norm(inp.value));
+  inp.classList.remove("good","bad"); inp.classList.add(good?"good":"bad");
+  inp.disabled=good; if(!good) ok=false;
+ }
+ if(ok){
+  const first=isFirstTry(keyT()); if(first) S.stars++;
+  markTry(keyT()); fb(true,first); unlockNext(); save();
+  document.querySelector(".fill-row .btn").disabled=true;
+ } else { markTry(keyT()); fb(false,false); }
+}
+function nextExT(){
+ S.ei++;
+ if(S.ei>=TOPICS[S.ti].ex.length){
+  S.done[S.ti]=true; save();
+  const last=S.ti===TOPICS.length-1;
+  document.getElementById("exCard").innerHTML=`
+   <div class="topic-done"><div class="big">Тема пройдена!</div>
+   <p>Ты ответил на все 10 заданий.<br>Следующая тема ждёт — доведи кружки до зелёного!</p>
+   <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap">
+    <button class="btn btn-light" onclick="goTopics()">К темам</button>
+    ${last?`<button class="btn btn-dark" onclick="goTest()">К финальному тесту →</button>`
+          :`<button class="btn btn-dark" onclick="goLesson(${S.ti+1})">Следующая тема →</button>`}
+   </div></div>`;
+  renderSteps(); save();
+ } else renderEx();
+}
+
+load(); goStart();
+</script>
+</body>
+</html>
