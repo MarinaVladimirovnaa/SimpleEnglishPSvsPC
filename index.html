@@ -133,8 +133,10 @@ button{font-family:inherit;cursor:pointer}
 /* toast + footer */
 .toast{position:fixed;left:50%;bottom:28px;transform:translateX(-50%) translateY(90px);background:var(--navy);color:#fff;font-weight:800;padding:13px 24px;border-radius:999px;border:3px solid var(--navy);box-shadow:5px 5px 0 rgba(0,0,0,.25);transition:.3s;z-index:99;font-size:15px}
 .toast.show{transform:translateX(-50%) translateY(0)}
-.reset-link{background:none;border:none;font-weight:800;font-size:13px;color:var(--navy);opacity:.65;text-decoration:underline;margin-top:34px}
+.gap-hint{color:#5f6ea8;font-weight:700;font-size:.72em}
+.reset-link{background:none;}border:none;font-weight:800;font-size:13px;color:var(--navy);opacity:.65;text-decoration:underline;margin-top:34px}
 </style>
+<base target="_blank">
 </head>
 <body>
 
@@ -161,8 +163,8 @@ const TOPICS=[
    {q:"He ___ not watch TV in the morning.", type:"choice", opts:["do","does","is"], a:"does"},
    {q:"Water ___ at 100°C.", type:"choice", opts:["boil","boils","is boiling"], a:"boils"},
    {q:"The train ___ at 8 o’clock.", type:"choice", opts:["leave","leaves","is leaving"], a:"leaves"},
-   {q:"I ___ (get up) at 7 o’clock.", type:"fill", accept:["get up"]},
-   {q:"My brother ___ (watch) TV every evening.", type:"fill", accept:["watches"]},
+   {q:"I ___ at 7 o’clock.", type:"fill", accept:["get up"], hints:["get up"]},
+   {q:"My brother ___ TV every evening.", type:"fill", accept:["watches"], hints:["watch"]},
    {q:"We ___ in Moscow.", type:"choice", opts:["live","lives","living"], a:"live"},
    {q:"She always ___ her homework.", type:"choice", opts:["do","does","is doing"], a:"does"}
   ]},
@@ -179,8 +181,8 @@ const TOPICS=[
    {q:"She ___ a book now.", type:"choice", opts:["reads","is reading","read"], a:"is reading"},
    {q:"They ___ football at the moment.", type:"choice", opts:["play","are playing","plays"], a:"are playing"},
    {q:"Listen! The baby ___.", type:"choice", opts:["cries","is crying","cry"], a:"is crying"},
-   {q:"I ___ (write) a letter at the moment.", type:"fill", accept:["am writing","im writing","m writing"]},
-   {q:"They ___ (swim) in the pool now.", type:"fill", accept:["are swimming","re swimming"]},
+   {q:"I ___ a letter at the moment.", type:"fill", accept:["am writing","im writing","m writing"], hints:["write"]},
+   {q:"They ___ in the pool now.", type:"fill", accept:["are swimming","re swimming"], hints:["swim"]},
    {q:"We ___ for the test right now.", type:"choice", opts:["study","are studying","studies"], a:"are studying"},
    {q:"The sun ___ today.", type:"choice", opts:["shines","is shining","shine"], a:"is shining"},
    {q:"Why ___ you crying?", type:"choice", opts:["are","is","do"], a:"are"},
@@ -194,13 +196,13 @@ const TOPICS=[
    {t:"Статичные глаголы", b:"know, like, want, need, understand обычно НЕ ставим в Continuous: I know him, а не I am knowing."},
    {t:"Осторожно", b:"«Look!» и «Listen!» почти всегда = Continuous. Расписание (the train leaves at 6) = Simple, даже про будущее."}],
   ex:[
-   {q:"She usually ___ tea, but today she ___ coffee.", type:"dual", accept:[["drinks"],["is drinking","s drinking"]]},
+   {q:"She usually ___ tea, but today she ___ coffee.", type:"dual", accept:[["drinks"],["is drinking","s drinking"]], hints:["drink","drink"]},
    {q:"Look! The children ___ in the garden.", type:"choice", opts:["play","are playing","plays"], a:"are playing"},
    {q:"He ___ to work by bus every day.", type:"choice", opts:["go","goes","is going"], a:"goes"},
    {q:"Be quiet! I ___ on the phone.", type:"choice", opts:["talk","am talking","talks"], a:"am talking"},
    {q:"The Earth ___ around the Sun.", type:"choice", opts:["goes","is going","go"], a:"goes"},
    {q:"We ___ a party tonight.", type:"choice", opts:["have","are having","has"], a:"are having"},
-   {q:"He usually ___ TV in the evening, but now he ___ a book.", type:"dual", accept:[["watches"],["is reading","s reading"]]},
+   {q:"He usually ___ TV in the evening, but now he ___ a book.", type:"dual", accept:[["watches"],["is reading","s reading"]], hints:["watch","read"]},
    {q:"She ___ English very well.", type:"choice", opts:["speaks","is speaking","speak"], a:"speaks"},
    {q:"He ___ his car this week — it is broken.", type:"choice", opts:["repairs","is repairing","repair"], a:"is repairing"},
    {q:"My friend ___ in London. He has a house there.", type:"choice", opts:["lives","is living","live"], a:"lives"}
@@ -211,15 +213,15 @@ const TEST=[
  {q:"She ___ her grandmother every Sunday.", type:"choice", opts:["visits","is visiting","visit"], a:"visits"},
  {q:"Hurry up! The bus ___!", type:"choice", opts:["comes","is coming","come"], a:"is coming"},
  {q:"Water ___ at 0°C.", type:"choice", opts:["freezes","is freezing","freeze"], a:"freezes"},
- {q:"I ___ (repair) my bike at the moment.", type:"fill", accept:["am repairing","im repairing","m repairing"]},
- {q:"He usually ___ TV in the evening, but now he ___ a book.", type:"dual", accept:[["watches"],["is reading","s reading"]]},
+ {q:"I ___ my bike at the moment.", type:"fill", accept:["am repairing","im repairing","m repairing"], hints:["repair"]},
+ {q:"He usually ___ TV in the evening, but now he ___ a book.", type:"dual", accept:[["watches"],["is reading","s reading"]], hints:["watch","read"]},
  {q:"They ___ London next week.", type:"choice", opts:["visit","are visiting","visits"], a:"are visiting"},
  {q:"My mum ___ delicious cakes.", type:"choice", opts:["cooks","is cooking","cook"], a:"cooks"},
- {q:"___! The baby ___!", type:"dual", accept:[["look"],["is sleeping","s sleeping"]]},
+ {q:"___! The baby ___!", type:"dual", accept:[["look"],["is sleeping","s sleeping"]], hints:["look","sleep"]},
  {q:"She ___ at 7 o’clock every morning.", type:"choice", opts:["gets up","is getting up","get up"], a:"gets up"},
  {q:"We ___ a new house this year.", type:"choice", opts:["build","are building","builds"], a:"are building"},
  {q:"The train ___ at 6 p.m. every day.", type:"choice", opts:["leaves","is leaving","leave"], a:"leaves"},
- {q:"Why ___ you ___ (cry)?", type:"dual", accept:[["are"],["crying"]]}
+ {q:"Why ___ you ___?", type:"dual", accept:[["are"],["crying"]], hints:["be","cry"]}
 ];
 
 const MQ=["she plays","is she playing?","I am reading","they don’t","Look!","he watches","we are having fun","it rains","now","always","does he work?","they are swimming","every day","at the moment","she is cooking","we live"];
@@ -343,7 +345,11 @@ function exInner(ex,n,total,ctx){
  <div class="ex-nav"><span class="score-chip">★ звёзд: ${totalStars()}</span>
  <button class="btn btn-dark" id="nextBtn" style="visibility:hidden" onclick="nextEx()">Далее →</button></div>`;
 }
-function fmtQ(ex){ return esc(ex.q).replace(/___/g,'<span class="gap">_____</span>') }
+function fmtQ(ex){
+ let h=esc(ex.q).replace(/___/g,'<span class="gap">_____</span>');
+ if(ex.hints&&ex.hints.length) h+=' <span class="gap-hint">('+ex.hints.join("; ")+')</span>';
+ return h;
+}
 
 function renderEx(){
  const t=TOPICS[S.ti];
@@ -387,12 +393,12 @@ function checkFill(){
   const first=isFirstTry(keyT()); if(first) S.stars++;
   markTry(keyT()); fb(true,first); unlockNext(); save();
   document.querySelector(".fill-row .btn").disabled=true;
- } else { markTry(keyT()); fb(false,false); }
+ } else { markTry(keyT()); fb(false,false); unlockNext(); save(); }
 }
 function fb(ok,first){
  const f=document.getElementById("fb");
  f.className="feedback "+(ok?"ok":"no");
- f.textContent=ok?(first?"Верно! +1 ★":"Верно!"):"Пока нет — попробуй ещё раз.";
+ f.textContent=ok?(first?"Верно! +1 ★":"Верно!"):"Не совсем. Попробуй ещё или жми «Далее».";
 }
 function unlockNext(){document.getElementById("nextBtn").style.visibility="visible"}
 
@@ -429,16 +435,16 @@ function renderTest(){
 function tchoose(o){
  const ex=TEST[S.testIdx];
  const btns=[...document.querySelectorAll(".opt")];
- btns.forEach(b=>b.disabled=true);
  if(o===ex.a){
+  btns.forEach(b=>b.disabled=true);
   document.getElementById("opt-"+o).classList.add("correct");
   btns.filter(b=>b.id!=="opt-"+o).forEach(b=>b.style.opacity=.4);
   const first=isFirstTry(keyX()); if(first) S.testStars++;
   markTry(keyX()); fb(true,first); unlockNext(); save();
  } else {
-  document.getElementById("opt-"+o).classList.add("wrong");
-  btns.find(b=>b.id==="opt-"+o).disabled=false;
-  markTry(keyX()); fb(false,false);
+  const wb=document.getElementById("opt-"+o);
+  wb.classList.add("wrong"); wb.disabled=true;
+  markTry(keyX()); fb(false,false); unlockNext(); save();
  }
 }
 function tcheckFill(){
@@ -446,7 +452,8 @@ function tcheckFill(){
  const n=ex.type==="dual"?2:1; let ok=true;
  for(let i=0;i<n;i++){
   const inp=document.getElementById("in"+i);
-  const good=ex.accept[i].some(a=>norm(a)===norm(inp.value));
+  const acc=ex.type==="dual"?ex.accept[i]:ex.accept;
+  const good=acc.some(a=>norm(a)===norm(inp.value));
   inp.classList.remove("good","bad"); inp.classList.add(good?"good":"bad");
   inp.disabled=good; if(!good) ok=false;
  }
@@ -454,7 +461,7 @@ function tcheckFill(){
   const first=isFirstTry(keyX()); if(first) S.testStars++;
   markTry(keyX()); fb(true,first); unlockNext(); save();
   document.querySelector(".fill-row .btn").disabled=true;
- } else { markTry(keyX()); fb(false,false); }
+ } else { markTry(keyX()); fb(false,false); unlockNext(); save(); }
 }
 function tnext(){ S.testIdx++; renderTest(); }
 
@@ -494,16 +501,16 @@ function nextEx(){ S.screen==="test"?tnext():nextExT() }
 function chooseT(o){
  const ex=TOPICS[S.ti].ex[S.ei];
  const btns=[...document.querySelectorAll(".opt")];
- btns.forEach(b=>b.disabled=true);
  if(o===ex.a){
+  btns.forEach(b=>b.disabled=true);
   document.getElementById("opt-"+o).classList.add("correct");
   btns.filter(b=>b.id!=="opt-"+o).forEach(b=>b.style.opacity=.4);
   const first=isFirstTry(keyT()); if(first) S.stars++;
   markTry(keyT()); fb(true,first); unlockNext(); save();
  } else {
-  document.getElementById("opt-"+o).classList.add("wrong");
-  btns.find(b=>b.id==="opt-"+o).disabled=false;
-  markTry(keyT()); fb(false,false);
+  const wb=document.getElementById("opt-"+o);
+  wb.classList.add("wrong"); wb.disabled=true;
+  markTry(keyT()); fb(false,false); unlockNext(); save();
  }
 }
 function checkFillT(){
@@ -511,7 +518,8 @@ function checkFillT(){
  const n=ex.type==="dual"?2:1; let ok=true;
  for(let i=0;i<n;i++){
   const inp=document.getElementById("in"+i);
-  const good=ex.accept[i].some(a=>norm(a)===norm(inp.value));
+  const acc=ex.type==="dual"?ex.accept[i]:ex.accept;
+  const good=acc.some(a=>norm(a)===norm(inp.value));
   inp.classList.remove("good","bad"); inp.classList.add(good?"good":"bad");
   inp.disabled=good; if(!good) ok=false;
  }
@@ -519,7 +527,7 @@ function checkFillT(){
   const first=isFirstTry(keyT()); if(first) S.stars++;
   markTry(keyT()); fb(true,first); unlockNext(); save();
   document.querySelector(".fill-row .btn").disabled=true;
- } else { markTry(keyT()); fb(false,false); }
+ } else { markTry(keyT()); fb(false,false); unlockNext(); save(); }
 }
 function nextExT(){
  S.ei++;
